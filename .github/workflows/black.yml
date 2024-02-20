@@ -1,0 +1,33 @@
+name: Code formatting
+
+on:
+  push:
+    branches: [ master ]
+    paths-ignore:
+      - '.github/**'
+      - '.dockerignore'
+      - '.gitattributes'
+      - '.gitignore'
+      - 'Dockerfile'
+      - 'README.md'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Master
+        uses: actions/checkout@v4
+
+      - name: Code formatting using black
+        uses: psf/black@stable
+        with:
+          options: "--exclude=.github,.dockerignore,.gitattributes,.gitignore,Dockerfile,README.md"
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          author: GitHub Actions <action@github.com>
+          commit-message: Format from Balck
+          delete-branch: true
+          branch-suffix: short-commit-hash
+          title: Format from Balck

@@ -1,0 +1,9 @@
+fastapi==0.109.2
+uvicorn
+vk-api
+pydantic<3.0.0
+onepasswordconnectsdk
+sentry-sdk
+requests
+websockets
+nng_sdk @ git+https://github.com/thealonas/nng-sdk@master
